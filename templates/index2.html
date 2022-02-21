@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+
+<head>
+
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <title>index2</title>
+    <link rel="stylesheet" href="static/css/application.css">
+    <link rel="shortcut icon" href="static/img/favicon.png">
+
+</head>
+
+<body>
+
+    <div class="parent_0">
+        <canvas></canvas>
+
+
+
+
+        <!--太阳系系统-->
+        <div class="taiyangxi">
+            <div class="xingxing"></div>
+            <!--太阳-->
+            <div class="taiyang"></div>
+            <!--水星-->
+            <div class="shuixing-guidao"></div>
+            <div class="shuixing-xitong">
+                <div class="shuixing"></div>
+            </div>
+            <!--金星-->
+            <div class="jinxing-guidao"></div>
+            <div class="jinxing-xitong">
+                <div class="jinxing"></div>
+            </div>
+            <!--地月系统-->
+            <div class="diqiu-guidao"></div>
+            <div class="diqiu-xitong">
+                <!--地球-->
+                <div class="diqiu"></div>
+                <!--月球-->
+                <div class="yueliang"></div>
+            </div>
+            <!--火星-->
+            <div class="huoxing-guidao"></div>
+            <div class="huoxing-xitong">
+                <div class="huoxing"></div>
+            </div>
+            <!--小行星带-->
+            <div class="xiaoxingxingdai"></div>
+            <div class="xiaoxingxing"></div>
+            <!--木星-->
+            <div class="muxing-guidao"></div>
+            <div class="muxing-xitong">
+                <div class="muxing"></div>
+            </div>
+            <!--木星-->
+            <div class="tuxing-guidao"></div>
+            <div class="tuxing-xitong">
+                <div class="tuxing"></div>
+                <div class="ring"></div>
+            </div>
+            <!--天王星-->
+            <div class="tianwangxing-guidao"></div>
+            <div class="tianwangxing-xitong">
+                <div class="tianwangxing"></div>
+            </div>
+            <!--海王星-->
+            <div class="haiwangxing-guidao"></div>
+            <div class="haiwangxing-xitong">
+                <div class="haiwangxing"></div>
+            </div>
+        </div>
+
+    </div>
+    <div class="parent_1">
+        <form action="" enctype='multipart/form-data' method='POST'>
+            <br><br><br><br><br><br>
+            <div class="grid" align="center">
+                <form class="form">
+                    <label class="form__label--hidden" for="name">Name:</label>
+                    <textarea rows=1 maxlength=900 type="text" class="form__input" name="name" id="name"
+                        placeholder="请输入您想要写入二维码的文本信息(如网页链接)……" required="required" /></textarea>
+                    <!--加入 style= "background:transparent;border-style:none; "可设置文本框为透明无边框-->
+                    <input class="btn--default" type="submit" value="提交文本" title="我写好啦">
+                    <input class="btn--warning" type="reset" value="清空文本" title="还得改点">
+                </form>
+                <div class="grid">
+                    <footer class="grid__col--12 panel--padded--centered" role="contentinfo">
+                        <a class="btn--error" style="float:right" href="http://{{_path}}/index" title="换种方式">
+                            或选择上传一张二维码</a>
+        </form>
+    </div>
+    <div>
+        <script type="text/javascript" src="./static/js/galaxy.js"></script>
+        <script type="text/javascript" src="./static/js/mouse.js"></script>
+    </div>
+
+
+</body>
+
+</html>

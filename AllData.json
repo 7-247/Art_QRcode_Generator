@@ -1,0 +1,10 @@
+{
+    "DataBaseName": "Class.db",
+    "TableName": "USED",
+    "Columns": {
+        "TimeStamp": "TEXT",
+        "Url": "TEXT",
+        "HashedUrl": "TEXT",
+        "UsedIp": "TEXT"
+    }
+}

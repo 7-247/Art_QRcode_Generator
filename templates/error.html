@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" href="../static/css/application.css">
+    <link rel="shortcut icon" href="../static/img/x.png">
+    <title>Error!</title>
+</head>
+<style>
+    body {
+        background: rgb(255, 255, 255);
+    }
+
+    .wid {
+        width: 50%;
+    }
+</style>
+
+<body>
+
+    <div id="demo"></div>
+    <br><br><br><br><br><br>
+    <p align="center"><img id="pic" src="../static/img/x.png"" width=" 300" height="300" alt="图片找不到惹QAQ" /></p>
+    <div class="grid" align="center">
+        <div class="wid" align="center">
+            <textarea rows=1 maxlength=1024 type="text" name="name" id="name" placeholder="您的提交有误！上传失败！"
+                disabled="disabled" style="text-align: center" /></textarea>
+        </div>
+        <div class="grid__col--12">
+            <br><br><br>
+            <a href="http://{{_path}}/index">
+                <input class="btn--error" type="button" id="r1" value="返回主页" onclick="">
+            </a>
+        </div>
+    </div>
+
+
+    <script>
+        var count = 5;  //先设定一个页面跳转的变化时间,5秒之后跳转
+        var demo = document.getElementById("demo");
+        setTimeout(goIndxePage, 1000); //1秒之后，执行goIndexPage这个函数 ,使用setTimeout这个定时器，而不是setInterval，因为函数执行需要5秒，而定时器每隔1秒执行一次函数，虽然setTImeout定时器只能执行一次，但是If，else的判断让这个计时器可以模拟循环使用
+        function goIndxePage() //函数内容
+        {
+            count--;
+            document.getElementById('r1').value = "返回主页(" + count + "S)";
+            if (count <= 0) //count小于0,说明5秒时间已经到了,这时候，我们需要跳转页面
+            {
+                window.location.href = "http://{{_path}}/index"; //js中的页面跳转
+            }
+            else {
+                //setTimeout(goIndxePage,1000);  //count在5秒之内，需要不断的执行goIndexPage这个函数，函数自己调用自己，叫做递归
+                setTimeout(arguments.callee, 1000) // 当函数递归调用的时候，推荐用arguments.callee来代替函数本身
+            }
+        }
+    </script>
+</body>
+
+</html>

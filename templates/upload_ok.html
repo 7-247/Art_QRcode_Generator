@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <title>上传成功！</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./static/css/application.css">
+    <link rel="shortcut icon" href="./static/img/favicon.png">
+</head>
+<style>
+    body {
+        background: rgb(255, 255, 255);
+    }
+</style>
+
+<body>
+    <div class="parent_0">
+        <canvas></canvas>
+        <script type="text/javascript" src="./static/js/mouse.js"> </script>
+        <script>    //生成一列穿过二维码的气泡
+            for (let i = 1; i < 140; i++) {
+                (function (index) {
+                    setTimeout(function () {
+                        mouse.x = 100 + i * 10;
+                        mouse.y = 100;
+                        drawCircles();
+                    }, i * 10);
+                })(i);
+            }
+        </script>
+    </div>
+
+    <br>
+    <div class="parent_1">
+        <form action="" enctype='multipart/form-data' method='POST'>
+        </form>
+        <br>
+        <div class="grid" align="center">
+            <img id="pic" alt="图片找不到惹QAQ" />
+            <textarea rows=1 maxlength=1024 type="text" class="form__input" name="name" id="name" readonly="readonly"
+                style="text-align: center" />您输入的URL为： {{userinput}}</textarea>
+            <br>
+            <div class="grid" id="mask">
+                <div class="grid__col--12">
+                    <input class="btn--default" type="button" id="style_1" style="background-color:#1167BB" value="同济限定"
+                        onclick="show(this)">
+                    <input class="btn--success" type="button" id="style_2" style="background-color:#56597A"
+                        value="Vincent" onclick="show(this)">
+                    <input class="btn--error" type="button" id="style_3" style="background-color:#FF6000" value="新春贺禧"
+                        onclick="show(this)">
+                    <input class="btn--success" type="button" id="style_4" style="background-color:#FDBE4C" value="可稽函数"
+                        onclick="show(this)">
+                    <input class="btn--default" type="button" id="style_5" style="background-color:#666666" value="码农日常"
+                        onclick="show(this)">
+                    <input class="btn--default" type="button" id="style_6" style="background-color:black" value="经典黑白"
+                        onclick="show(this)">
+                    <input class="btn--default" type="button" id="style_7" style="background-color:#FCCA59" value="轻羽飞扬"
+                        onclick="show(this)">
+                    <input class="btn--warning" type="button" id="style_8" style="background-color:#CFDA87" value="果宝特攻"
+                        onclick="show(this)">
+                    <input class="btn--warning" type="button" id="style_9" style="background-color:#AFC5EC" value="四色问题"
+                        onclick="show(this)">
+                    <input class="btn--error" type="button" id="style_10" style="background-color:#A0E7E5" value="罗马假日"
+                        onclick="show(this)">
+                    <input class="btn--success" type="button" id="style_11" style="background-color:#C6A8C4"
+                        value="花舞轻盈" onclick="show(this)">
+                    <br>
+                </div>
+
+                <div class="grid__col--12">
+                    <input class="btn--error" type="button" value="返回主页" id="return" onclick="returnto()">
+                    <input class="btn--default" type="button" value="保存图片" id="btnsaveImg" onclick="download()">
+                </div>
+            </div>
+        </div>
+</body>
+<script>
+    function returnto() {
+        window.location.href = "http://{{_path}}/index";
+    }
+    function download() {
+        var path = document.getElementById("pic").src;
+        if (path.indexOf('?') != -1)
+            //图片路径中不允许出现'?',否则前端将无法正确识别图片路径
+            path = path.substring(0, path.indexOf('?'));
+        path = path.slice(0, -10);
+        path = path + '_big.png';
+        var a = document.createElement('a');          // 创建一个a节点插入的document
+        var event = new MouseEvent('click');          // 模拟鼠标click点击事件
+        //a.download = {{ timearray }} +'.png';     // 设置a节点的download属性值
+        a.href = path;                                // 将图片的src赋值给a节点的href
+        a.dispatchEvent(event)                        // 触发鼠标点击事件
+    };
+    function fadeIn(obj, time) {//淡入函数  实现time毫秒后显示，原理是根据透明度来完成的
+        var startTime = new Date();
+        obj.style.opacity = 0;//设置下初始值透明度
+        obj.style.display = "block";
+        var timer = setInterval(function () {
+            var nowTime = new Date();
+            var prop = (nowTime - startTime) / time;
+            if (prop >= 1) {
+                prop = 1;//设置最终系数值
+                clearInterval(timer);
+            }
+            obj.style.opacity = prop;//透明度公式： 初始值+系数*（结束值-初始值）
+        }, 13);//每隔13ms执行一次function函数
+    };
+    function fadeOut(obj, time) {
+        var startTime = new Date();
+        obj.style.opacity = 1;//设置下初始值透明度
+        obj.style.display = "block";
+        var timer = setInterval(function () {
+            var nowTime = new Date();
+            var prop = (nowTime - startTime) / time;
+            if (prop >= 1) {
+                prop = 1;//设置最终系数值
+                clearInterval(timer);
+            }
+            obj.style.opacity = 1 + prop * (0 - 1);//透明度公式： 初始值+系数*（结束值-初始值）
+        }, 13);//每隔13ms执行一次function函数
+    };
+    function show(data) {
+        var path = data.id;
+
+        // 判断按钮所指定的图片和当前图片是否相同
+        var p1 = document.getElementById("pic").src;
+        p1 = p1[p1.indexOf("style") + 6] + p1[p1.indexOf("style") + 7];
+        var p2 = "./static/new/" + path + '/' + '{{hashedurl}}' + '_small.png';
+        var url = p2;
+        p2 = p2[p2.indexOf("style") + 6] + p2[p2.indexOf("style") + 7];
+        console.log(p1, p2);
+        if (p1 == p2) {
+            return; // 相同的图片直接返回，不重新加载。
+        }
+
+        else {
+            fadeOut(document.getElementById("pic"), 200); // 让图片淡出
+            var img = new Image(); 
+            img.src = url; // 同时预加载图片
+            setTimeout(function () {
+                if (img.complete) { // 如果图片已经在缓存内，则淡出后直接显示（淡入）显示新图片
+                    document.getElementById("pic").src = url;
+                    fadeIn(document.getElementById("pic"), 200);
+                    return;
+                }
+                img.onload = function() { // 否则等图片加载完毕，onload触发，再载入图片
+                    document.getElementById("pic").src = url;
+                    fadeIn(document.getElementById("pic"), 200);
+                }
+            }, 250);
+        }
+    };
+</script>
+
+<script>
+    document.getElementById("pic").src = "./static/new/style_1/" + '{{hashedurl}}' + '_small.png';
+    var count = 2.5;  //先设定一个页面跳转的变化时间,3秒之后跳转
+    var demo = document.getElementById("demo");
+    setTimeout(goIndxePage, 1000); //1秒之后，执行goIndexPage这个函数 ,使用setTimeout这个定时器，而不是setInterval，因为函数执行需要5秒，而定时器每隔1秒执行一次函数，虽然setTImeout定时器只能执行一次，但是If，else的判断让这个计时器可以模拟循环使用
+    function goIndxePage() //函数内容
+    {
+        count--;
+        if (count <= 0) //count小于0,说明3秒时间已经到了,这时候，我们需要跳转页面
+        {
+            document.getElementById("name").focus();
+            document.getElementById("name").value = "请选择以下主题，点击下方按钮保存更清晰(*^w^*)";
+        }
+        else {
+            setTimeout(arguments.callee, 1000) // 当函数递归调用的时候，推荐用arguments.callee来代替函数本身
+        }
+    }
+</script>
+<script>
+    let btn = document.querySelector('#name');
+    btn.addEventListener('click', () => {
+        let input = document.querySelector('#name');
+        input.value = "{{userinput}}";
+        input.select();
+        if (document.execCommand('copy')) {
+            document.execCommand('copy');
+            console.log('复制成功');
+            input.value = "文本已复制到剪贴板";
+            setTimeout(function () { input.value = "请选择以下主题"; }, 1500);
+        }
+    })
+</script>
+
+</html>
