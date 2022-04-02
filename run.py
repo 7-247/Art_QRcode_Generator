@@ -18,8 +18,8 @@ from gevent import pywsgi
 # 设置允许的文件格式
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'JPG', 'PNG', 'bmp', 'BMP'])
 time_last = ""
-webpath = "ellye.cn:8987"
-localpath = "127.0.0.1:8987"
+webpath = "http://49.235.64.119:8000/"
+localpath = "127.0.0.1:8000"
 tag_wl = 0
 # tag_wl用于控制使用本地路径还是服务器路径进行访问 1代表local 0代表web
 # 根据字符串得到图片
@@ -48,7 +48,8 @@ def GetAllTable():
 
 def CreateTable(tablename, columns):
     order = f"CREATE TABLE {tablename} ("
-    p = ','.join(list(map(lambda x: f"{x[0]} {x[1]} not null", list(columns.items()))))
+    p = ','.join(
+        list(map(lambda x: f"{x[0]} {x[1]} not null", list(columns.items()))))
     order = order + p + ");"
     try:
         cursor.execute(order)
@@ -139,7 +140,10 @@ def make(url, name):
     if len(url) < 1 or len(url) > 1024:
         return ""
     else:
-        qr = qrcode.QRCode(version=1, error_correction=qrcode.constants.ERROR_CORRECT_H, box_size=20, border=0)
+        qr = qrcode.QRCode(version=1,
+                           error_correction=qrcode.constants.ERROR_CORRECT_H,
+                           box_size=20,
+                           border=0)
         qr.add_data(url)
         qr.make(fit=True)
         img = qr.make_image(fill_color='black', back_color='white')
@@ -328,7 +332,9 @@ def itemcon(conare, srclist, data):
                         arehead[visit[0]].append(j)
                         for x in range(0, visit[0][0]):
                             for y in range(0, visit[0][1]):
-                                new_data[h + x][w + y] = pre_visit.index(visit[0]) + 2
+                                new_data[h +
+                                         x][w +
+                                            y] = pre_visit.index(visit[0]) + 2
                                 i.pop(i.index((h + x, w + y)))
             if find_num == 0:
                 visit.pop(0)
@@ -348,7 +354,9 @@ def reco(r, g, b):
     for i in range(0, 140):
         for j in range(0, 140):
             a, c = i // 20, j // 20
-            if (a > 0 and a < 6 and (c == 1 or c == 5)) or (c > 0 and c < 6 and (a == 1 or a == 5)):
+            if (a > 0 and a < 6 and
+                (c == 1 or c == 5)) or (c > 0 and c < 6 and
+                                        (a == 1 or a == 5)):
                 reco[i][j] = (255, 255, 255)
             else:
                 reco[i][j] = (r, g, b)
@@ -398,7 +406,8 @@ def artqrcode(filename, img_path, name):
     imgx = dict()
     for i in srclist.keys():
         for j in range(1, srclist[i] + 1):
-            imgx[(i, j)] = Image.open(filename + "%d_%d_%d.png" % (i[1], i[0], j))
+            imgx[(i,
+                  j)] = Image.open(filename + "%d_%d_%d.png" % (i[1], i[0], j))
     h, w = data.shape
     all_im = Image.new("RGB", (h * 20, w * 20), "#FFFFFF")
     for i, j in arehead.items():
@@ -484,7 +493,8 @@ def index():
         if (len(url) == 0):
             return render_template('error.html', _path=path)
         hashedurl = getHash(url)
-        upload_path = os.path.join(basepath, 'static/images', hashedurl + '.png')
+        upload_path = os.path.join(basepath, 'static/images',
+                                   hashedurl + '.png')
         img.save(upload_path)
         if CheckValue(AllData['TableName'], url, 'url'):
             pass
@@ -505,7 +515,11 @@ def index():
                 allclear(time_now)
                 timelast = time_now
         InsertTable(AllData['TableName'], (__timearray, url, hashedurl, ip))
-        return render_template('upload_ok.html', userinput=url, val1=time.time(), hashedurl=hashedurl, _path=path)
+        return render_template('upload_ok.html',
+                               userinput=url,
+                               val1=time.time(),
+                               hashedurl=hashedurl,
+                               _path=path)
     return render_template('index.html', _path=path)
 
 
@@ -526,7 +540,8 @@ def index2():
         hashedurl = getHash(user_input)
         img = make(user_input, hashedurl)
         basepath = os.path.dirname(__file__)  # 当前文件所在路径
-        upload_path = os.path.join(basepath, 'static/images', hashedurl + '.png')
+        upload_path = os.path.join(basepath, 'static/images',
+                                   hashedurl + '.png')
         if CheckValue(AllData['TableName'], user_input, 'url'):
             pass
         else:
@@ -545,14 +560,19 @@ def index2():
             if time_now != time_last:
                 allclear(time_now)
                 timelast = time_now
-        InsertTable(AllData['TableName'], (__timearray, user_input, hashedurl, ip))
-        return render_template('upload_ok.html', userinput=user_input, val1=time.time(), hashedurl=hashedurl, _path=path)
+        InsertTable(AllData['TableName'],
+                    (__timearray, user_input, hashedurl, ip))
+        return render_template('upload_ok.html',
+                               userinput=user_input,
+                               val1=time.time(),
+                               hashedurl=hashedurl,
+                               _path=path)
     return render_template('index2.html', _path=path)
 
 
 if __name__ == '__main__':
     InitTable(AllData)
-    server = pywsgi.WSGIServer(('0.0.0.0', 8987), app)
+    server = pywsgi.WSGIServer(('0.0.0.0', 8000), app)
     server.serve_forever()
     #app.debug = True
     #app.run(host='0.0.0.0', port=8987, debug=True)

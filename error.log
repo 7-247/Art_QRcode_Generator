@@ -1,0 +1,85 @@
+[2022-03-31 23:41:48 +0800] [45792] [INFO] Starting gunicorn 20.1.0
+[2022-03-31 23:41:48 +0800] [45792] [INFO] Listening at: http://0.0.0.0:5000 (45792)
+[2022-03-31 23:41:48 +0800] [45792] [INFO] Using worker: sync
+[2022-03-31 23:41:48 +0800] [45800] [INFO] Booting worker with pid: 45800
+[2022-03-31 23:58:23 +0800] [59123] [INFO] Starting gunicorn 20.1.0
+[2022-03-31 23:58:23 +0800] [59123] [INFO] Listening at: http://0.0.0.0:8000 (59123)
+[2022-03-31 23:58:23 +0800] [59123] [INFO] Using worker: sync
+[2022-03-31 23:58:23 +0800] [59131] [INFO] Booting worker with pid: 59131
+[2022-04-01 13:20:36 +0800] [59123] [CRITICAL] WORKER TIMEOUT (pid:59131)
+[2022-04-01 13:20:36 +0800] [59131] [INFO] Worker exiting (pid: 59131)
+[2022-04-01 13:20:36 +0800] [176490] [INFO] Booting worker with pid: 176490
+[2022-04-01 22:07:59 +0800] [266430] [INFO] Starting gunicorn 20.1.0
+[2022-04-01 22:07:59 +0800] [266430] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2022-04-01 22:07:59 +0800] [266430] [ERROR] Retrying in 1 second.
+[2022-04-01 22:08:00 +0800] [266430] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2022-04-01 22:08:00 +0800] [266430] [ERROR] Retrying in 1 second.
+[2022-04-01 22:08:01 +0800] [266430] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2022-04-01 22:08:01 +0800] [266430] [ERROR] Retrying in 1 second.
+[2022-04-01 22:08:02 +0800] [266430] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2022-04-01 22:08:02 +0800] [266430] [ERROR] Retrying in 1 second.
+[2022-04-01 22:08:03 +0800] [266430] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2022-04-01 22:08:03 +0800] [266430] [ERROR] Retrying in 1 second.
+[2022-04-01 22:08:04 +0800] [266430] [ERROR] Can't connect to ('0.0.0.0', 8000)
+[2022-04-01 22:09:42 +0800] [267321] [INFO] Starting gunicorn 20.1.0
+[2022-04-01 22:09:42 +0800] [267321] [INFO] Listening at: http://0.0.0.0:8000 (267321)
+[2022-04-01 22:09:42 +0800] [267321] [INFO] Using worker: sync
+[2022-04-01 22:09:42 +0800] [267323] [INFO] Booting worker with pid: 267323
+[2022-04-01 22:10:27,115] ERROR in app: Exception on /index2 [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.8/dist-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.8/dist-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.8/dist-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/root/Art_QRcode_Generator-master/run.py", line 548, in index2
+    artqrcode("./static/style/style_1/", upload_path, hashedurl)
+  File "/root/Art_QRcode_Generator-master/run.py", line 447, in artqrcode
+    big.save("./static/new/" + temp[-2] + '/' + name + "_big.png")
+  File "/usr/local/lib/python3.8/dist-packages/PIL/Image.py", line 2232, in save
+    fp = builtins.open(filename, "w+b")
+FileNotFoundError: [Errno 2] No such file or directory: './static/new/style_1/a98a02e9b2fa904123d84486c952fd73a77c3a699ae695ad628638417fa4fe9c_big.png'
+[2022-04-01 22:12:44,099] ERROR in app: Exception on /index2 [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.8/dist-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.8/dist-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.8/dist-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/root/Art_QRcode_Generator-master/run.py", line 549, in index2
+    artqrcode("./static/style/style_2/", upload_path, hashedurl)
+  File "/root/Art_QRcode_Generator-master/run.py", line 447, in artqrcode
+    big.save("./static/new/" + temp[-2] + '/' + name + "_big.png")
+  File "/usr/local/lib/python3.8/dist-packages/PIL/Image.py", line 2232, in save
+    fp = builtins.open(filename, "w+b")
+FileNotFoundError: [Errno 2] No such file or directory: './static/new/style_2/a98a02e9b2fa904123d84486c952fd73a77c3a699ae695ad628638417fa4fe9c_big.png'
+[2022-04-01 22:16:25,771] ERROR in app: Exception on /index2 [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/dist-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.8/dist-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.8/dist-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.8/dist-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/root/Art_QRcode_Generator-master/run.py", line 553, in index2
+    artqrcode("./static/style/style_6/", upload_path, hashedurl)
+  File "/root/Art_QRcode_Generator-master/run.py", line 389, in artqrcode
+    srclist, background = get_src(filename)
+  File "/root/Art_QRcode_Generator-master/run.py", line 221, in get_src
+    files = os.listdir(filename)
+FileNotFoundError: [Errno 2] No such file or directory: './static/style/style_6/'
+[2022-04-02 20:27:50 +0800] [267321] [INFO] Handling signal: term
+[2022-04-02 20:27:50 +0800] [267323] [INFO] Worker exiting (pid: 267323)
+[2022-04-02 20:27:50 +0800] [267321] [INFO] Shutting down: Master
+[2022-04-02 20:40:28 +0800] [636207] [INFO] Starting gunicorn 20.1.0
+[2022-04-02 20:40:28 +0800] [636207] [INFO] Listening at: http://0.0.0.0:8000 (636207)
+[2022-04-02 20:40:28 +0800] [636207] [INFO] Using worker: sync
+[2022-04-02 20:40:28 +0800] [636209] [INFO] Booting worker with pid: 636209

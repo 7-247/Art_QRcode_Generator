@@ -28,7 +28,7 @@
         </div>
         <div class="grid__col--12">
             <br><br><br>
-            <a href="http://{{_path}}/index">
+            <a href="{{_path}}/index">
                 <input class="btn--error" type="button" id="r1" value="返回主页" onclick="">
             </a>
         </div>
@@ -45,7 +45,7 @@
             document.getElementById('r1').value = "返回主页(" + count + "S)";
             if (count <= 0) //count小于0,说明5秒时间已经到了,这时候，我们需要跳转页面
             {
-                window.location.href = "http://{{_path}}/index"; //js中的页面跳转
+                window.location.href = "{{_path}}/index"; //js中的页面跳转
             }
             else {
                 //setTimeout(goIndxePage,1000);  //count在5秒之内，需要不断的执行goIndexPage这个函数，函数自己调用自己，叫做递归
